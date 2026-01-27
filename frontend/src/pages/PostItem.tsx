@@ -16,7 +16,7 @@
  * 4. Review & Submit
  */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -47,8 +47,7 @@ import {
   ShoppingBag,
   BookOpen,
   Dumbbell,
-  Package,
-  Lightbulb
+  Package
 } from 'lucide-react';
 import { ButtonSpinner } from '../components/Spinner';
 import { Calendar } from '../components/ui/calendar';
@@ -123,7 +122,6 @@ export default function PostItem() {
     formState: { errors, isSubmitting },
     watch,
     trigger,
-    getValues,
     setValue,
   } = useForm<PostItemFormData>({
     resolver: zodResolver(postItemSchema),

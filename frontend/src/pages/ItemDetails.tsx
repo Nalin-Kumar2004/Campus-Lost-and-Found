@@ -31,7 +31,7 @@ import claimsService from '../services/claims.service';
 import { useToast } from '../contexts/ToastContext';
 import type { Item } from '../services/items.service';
 import type { ApiError } from '../types';
-import { PageSpinner, ButtonSpinner } from '../components/Spinner';
+import { PageSpinner } from '../components/Spinner';
 import { 
   ArrowLeft, 
   MapPin, 
@@ -41,8 +41,7 @@ import {
   CheckCircle,
   X,
   Phone,
-  Mail,
-  Loader2
+  Mail
 } from 'lucide-react';
 
 /**
@@ -113,9 +112,9 @@ export default function ItemDetails() {
   /**
    * HANDLE IMAGE SELECTION
    */
-  const handleImageSelect = (index: number) => {
-    setSelectedImage(index);
-  };
+  // const handleImageSelect = (index: number) => {
+  //   setSelectedImage(index);
+  // };
 
   /**
    * HANDLE FORM INPUT CHANGES

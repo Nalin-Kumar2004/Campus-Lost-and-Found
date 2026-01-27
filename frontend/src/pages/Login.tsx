@@ -150,7 +150,7 @@ export default function Login() {
       } else if (error.response?.status === 403) {
         setApiError('Account is locked. Please contact support.');
       } else {
-        setApiError(getErrorMessage(error, 'Login failed. Please try again.'));
+        setApiError(error.response?.data?.error || 'Login failed. Please try again.');
       }
     }
   };

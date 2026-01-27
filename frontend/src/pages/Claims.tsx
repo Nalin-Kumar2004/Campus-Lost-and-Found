@@ -38,7 +38,8 @@ import claimsService from '../services/claims.service';
 import { useToast } from '../contexts/ToastContext';
 import type { Claim } from '../services/claims.service';
 import type { ApiError } from '../types';
-import { CheckCircle, XCircle, Clock, Mail, Phone, Calendar, MapPin, Search, Loader2, AlertCircle } from 'lucide-react';
+import { CheckCircle, XCircle, Clock, Mail, Phone, Calendar, MapPin, Search, AlertCircle } from 'lucide-react';
+import { Spinner } from '../components/Spinner';
 
 // TypeScript interfaces - now imported from claims.service.ts
 
@@ -167,7 +168,7 @@ export default function Claims() {
   };
 
   if (loading) {
-    return <PageSpinner text="Loading claims..." />;
+    return <div className="min-h-screen flex items-center justify-center"><Spinner /></div>;
   }
 
   if (error) {

@@ -217,7 +217,7 @@ export default function Register() {
       } else if (error.response?.status === 400) {
         setApiError(error.response?.data?.message || 'Invalid registration data');
       } else {
-        setApiError(getErrorMessage(error, 'Registration failed. Please try again.'));
+        setApiError(error.response?.data?.error || 'Registration failed. Please try again.');
       }
     }
   };

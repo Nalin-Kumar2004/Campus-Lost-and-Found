@@ -64,7 +64,7 @@ export default function MyItems() {
     missing: items.filter(item => item.type === 'LOST' && item.status === 'UNCLAIMED').length,
     unclaimed: items.filter(item => item.type === 'FOUND' && item.status === 'UNCLAIMED').length,
     inProgress: items.filter(item => item.status === 'CLAIMED').length,
-    completed: items.filter(item => item.status === 'RESOLVED' || item.status === 'RETURNED').length,
+    completed: items.filter(item => item.status === 'RETURNED').length,
   };
 
   // Filter items
@@ -72,7 +72,7 @@ export default function MyItems() {
     if (activeTab === 'missing' && !(item.type === 'LOST' && item.status === 'UNCLAIMED')) return false;
     if (activeTab === 'unclaimed' && !(item.type === 'FOUND' && item.status === 'UNCLAIMED')) return false;
     if (activeTab === 'inProgress' && item.status !== 'CLAIMED') return false;
-    if (activeTab === 'completed' && item.status !== 'RESOLVED' && item.status !== 'RETURNED') return false;
+    if (activeTab === 'completed' && item.status !== 'RETURNED') return false;
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
