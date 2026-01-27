@@ -1,0 +1,271 @@
+// This is your Prisma schema file
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// ENUMS - Define fixed set of values for type safety
+// ============================================================================
+
+/// User role for authorization
+enum UserRole {
+  STUDENT
+  ADMIN
+}
+
+/// Item type: whether it's a lost item report or found item report
+enum ItemType {
+  LOST
+  FOUND
+}
+
+/// Item status: tracks the lifecycle of an item
+enum ItemStatus {
+  UNCLAIMED        /// Item is still available (no one has claimed it)
+  CLAIMED          /// Someone has claimed this item (pending approval)
+  MATCHED          /// Item was matched with another item
+  RETURNED         /// Item was successfully returned to owner
+  CLOSED           /// Item report was closed/archived
+}
+
+/// Status of a claim request when someone claims an item
+enum ClaimStatus {
+  PENDING          /// Claim awaiting owner approval
+  APPROVED         /// Owner approved the claim
+  REJECTED         /// Owner rejected the claim
+  CANCELLED        /// Claimant cancelled the claim
+}
+
+// ============================================================================
+// USERS TABLE - Store user account information
+// ============================================================================
+
+model User {
+  /// Unique user identifier (UUID for better scalability than auto-increment)
+  id                String   @id @default(cuid())
+  
+  /// College email (unique to prevent duplicate accounts)
+  email             String   @unique
+  
+  /// User's full name for display
+  name              String
+  
+  /// Hashed password (never store plain text passwords!)
+  /// We use bcrypt with cost factor 10 (takes ~100ms to hash)
+  passwordHash      String
+  
+  /// Optional phone number for contact
+  phone             String?
+  
+  /// User role: STUDENT or ADMIN (admins can moderate claims)
+  role              UserRole @default(STUDENT)
+  
+  /// Email verification status (true = verified, false = not yet verified)
+  emailVerified     Boolean  @default(false)
+  
+  /// Token for email verification (null = no pending verification)
+  verificationToken String?  @unique
+  
+  /// When the verification token expires
+  tokenExpiresAt    DateTime?
+
+  /// Token for password reset (null = no pending reset)
+  /// Interview Q: Why separate from verificationToken?
+  /// -> Different purposes, different expiry times, clearer code
+  resetToken        String?  @unique
+  
+  /// When the password reset token expires (typically 1 hour)
+  resetTokenExpiresAt DateTime?
+  
+  /// When user account was created
+  createdAt         DateTime @default(now())
+  
+  /// When user account was last updated
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  /// Items this user has posted (as the person who found/lost it)
+  postedItems       Item[]   @relation("UserPostedItems")
+  
+  /// Claims this user has made on items
+  claims            Claim[]  @relation("UserClaims")
+  
+  // Indexes for common queries
+  @@index([email])
+  @@index([emailVerified])
+  @@map("users")
+}
+
+// ============================================================================
+// ITEMS TABLE - Store lost/found item reports
+// ============================================================================
+
+model Item {
+  /// Unique item report identifier
+  id                String   @id @default(cuid())
+  
+  /// Item title (e.g., "Black wallet with driving license")
+  title             String
+  
+  /// Detailed description of the item
+  description       String
+  
+  /// Category for filtering and matching (e.g., KEYS, ELECTRONICS, DOCUMENTS)
+  category          String   // Could be enum if we predefined categories
+  
+  /// Type: whether this is a LOST item report or FOUND item report
+  type              ItemType
+  
+  /// Current status of the item report
+  status            ItemStatus @default(UNCLAIMED)
+  
+  /// Where the item was lost or found (building name, location)
+  location          String
+  
+  /// Date when item was lost or found
+  itemDate          DateTime
+  
+  /// Where item is currently stored (if found by someone)
+  currentLocation   String?
+  
+  /// Optional verification question set by the item poster
+  /// (e.g., "What color was the wallet?")
+  verificationQuestion String?
+  
+  /// Hashed answer to verification question
+  /// User claiming must answer correctly to claim
+  verificationAnswerHash String?
+  
+  /// ID of user who posted this item (foreign key)
+  posterId          String
+  
+  /// Relationship: which user posted this item
+  poster            User     @relation("UserPostedItems", fields: [posterId], references: [id], onDelete: Cascade)
+  
+  /// When item report was created
+  createdAt         DateTime @default(now())
+  
+  /// When item report was last updated
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  /// All images uploaded for this item
+  images            Image[]  @relation("ItemImages")
+  
+  /// All claims made on this item
+  claims            Claim[]  @relation("ItemClaims")
+  
+  // Indexes for common queries
+  @@index([posterId])
+  @@index([status])
+  @@index([type])
+  @@index([category])
+  @@index([createdAt])
+  @@map("items")
+}
+
+// ============================================================================
+// IMAGES TABLE - Store multiple images per item
+// ============================================================================
+
+model Image {
+  /// Unique image identifier
+  id                String   @id @default(cuid())
+  
+  /// URL to the image (typically on CDN like Cloudinary)
+  url               String
+  
+  /// Image alt text for accessibility
+  altText           String?
+  
+  /// Which item does this image belong to (foreign key)
+  itemId            String
+  
+  /// Relationship: which item this image belongs to
+  item              Item     @relation("ItemImages", fields: [itemId], references: [id], onDelete: Cascade)
+  
+  /// Upload order (to show images in specific order)
+  order             Int      @default(0)
+  
+  /// When image was uploaded
+  createdAt         DateTime @default(now())
+  
+  // Indexes
+  @@index([itemId])
+  @@map("images")
+}
+
+// ============================================================================
+// CLAIMS TABLE - Track claim requests on items
+// ============================================================================
+
+model Claim {
+  /// Unique claim identifier
+  id                String   @id @default(cuid())
+  
+  /// Which item is being claimed (foreign key)
+  itemId            String
+  
+  /// Relationship: which item is this claim for
+  item              Item     @relation("ItemClaims", fields: [itemId], references: [id], onDelete: Cascade)
+  
+  /// Who is claiming the item (foreign key)
+  claimantId        String
+  
+  /// Relationship: user who made the claim
+  claimant          User     @relation("UserClaims", fields: [claimantId], references: [id], onDelete: Cascade)
+  
+  /// Current status of this claim request
+  status            ClaimStatus @default(PENDING)
+  
+  /// User's answer to verification question
+  verificationAnswer String?
+  
+  /// Admin notes on why claim was approved/rejected
+  adminNotes        String?
+  
+  /// When claim was made
+  createdAt         DateTime @default(now())
+  
+  /// When claim was last updated
+  updatedAt         DateTime @updatedAt
+  
+  // Indexes
+  @@index([itemId])
+  @@index([claimantId])
+  @@index([status])
+  @@unique([itemId, claimantId]) // Only one claim per person per item
+  @@map("claims")
+}
+
+// ============================================================================
+// EMAIL VERIFICATION TOKENS TABLE (Optional but recommended)
+// ============================================================================
+
+model EmailVerificationToken {
+  /// Unique token identifier
+  id                String   @id @default(cuid())
+  
+  /// The actual token string (random, sent in email)
+  token             String   @unique
+  
+  /// User email to verify
+  email             String
+  
+  /// When token expires (usually 24 hours from creation)
+  expiresAt         DateTime
+  
+  /// When token was created
+  createdAt         DateTime @default(now())
+  
+  @@index([email])
+  @@index([expiresAt])
+  @@map("email_verification_tokens")
+}

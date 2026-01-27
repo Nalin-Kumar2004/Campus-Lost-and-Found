@@ -1,0 +1,5 @@
+# Backend-specific ignores
+# (Most ignores are in root .gitignore)
+
+# Prisma migrations (keep schema, ignore migrations)
+prisma/migrations/

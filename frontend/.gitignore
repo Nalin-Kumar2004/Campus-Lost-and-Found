@@ -1,0 +1,9 @@
+# Frontend-specific ignores
+# (Most ignores are in root .gitignore)
+
+# Vite build output
+dist-ssr
+
+# Keep VSCode extensions recommendations
+.vscode/*
+!.vscode/extensions.json

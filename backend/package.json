@@ -1,0 +1,48 @@
+{
+  "name": "campus-lost-and-found-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Campus Lost and Found Portal",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
+  },
+  "keywords": [
+    "lost-and-found",
+    "typescript",
+    "express",
+    "prisma"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "bcrypt": "*",
+    "cloudinary": "^2.9.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "*",
+    "express": "*",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "*",
+    "nodemailer": "^6.9.8",
+    "prisma": "^5.22.0",
+    "zod": "*"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "*",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "*",
+    "@types/express-rate-limit": "^5.1.3",
+    "@types/jsonwebtoken": "*",
+    "@types/node": "*",
+    "tsx": "*",
+    "typescript": "*"
+  }
+}
