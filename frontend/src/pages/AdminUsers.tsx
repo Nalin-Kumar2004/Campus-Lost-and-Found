@@ -48,7 +48,7 @@ export default function AdminUsers() {
       
       const params: AdminUsersQueryParams = { page, limit: 20 };
       if (roleFilter) params.role = roleFilter as 'STUDENT' | 'ADMIN';
-      if (verifiedFilter) params.emailVerified = verifiedFilter;
+      if (verifiedFilter && verifiedFilter !== '') params.emailVerified = verifiedFilter;
       if (searchQuery) params.search = searchQuery;
 
       const response = await api.get('/admin/users', { params });
