@@ -40,3 +40,4 @@ logs
 *.md
 !README.md
 PROJECT_INFO.md
+DEPLOYMENT_GUIDE.md
