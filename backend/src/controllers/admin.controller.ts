@@ -1,6 +1,12 @@
 import { Request, Response } from 'express';
 import { prisma } from '../lib/prisma';
 
+// Helper to safely extract string from query/params (can be string | string[])
+const asString = (value: string | string[] | undefined): string | undefined => {
+  if (Array.isArray(value)) return value[0];
+  return value;
+};
+
 // Extend Express Request type to include user property from auth middleware
 declare global {
   namespace Express {
@@ -329,7 +335,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
 export const updateUserRole = async (req: Request, res: Response) => {
   try {
     // Step 1: Extract user ID from URL params
-    const { id: userId } = req.params;
+    const userId = asString(req.params.id);
 
     // Step 2: Extract new role from body
     const { role } = req.body;

@@ -3,6 +3,12 @@ import { prisma } from '../lib/prisma';
 import { sendEmail, claimCreatedTemplate, claimStatusUpdatedTemplate } from '../utils/email';
 import { comparePassword } from '../utils/password';
 
+// Helper to safely extract string from query/params (can be string | string[])
+const asString = (value: string | string[] | undefined): string | undefined => {
+  if (Array.isArray(value)) return value[0];
+  return value;
+};
+
 // Extend Express Request type to include user property from auth middleware
 declare global {
   namespace Express {
@@ -71,7 +77,7 @@ declare global {
 export const createClaim = async (req: Request, res: Response) => {
   try {
     // Step 1: Extract item ID from URL params
-    const { id: itemId } = req.params;
+    const itemId = asString(req.params.id);
 
     // Step 2: Extract verification answer from request body (optional)
     const { verificationAnswer } = req.body;
@@ -439,7 +445,7 @@ export const getClaims = async (req: Request, res: Response) => {
 export const updateClaimStatus = async (req: Request, res: Response) => {
   try {
     // Step 1: Extract claim ID from URL params
-    const { id: claimId } = req.params;
+    const claimId = asString(req.params.id);
 
     // Step 2: Extract status and notes from request body
     const { status, adminNotes } = req.body;

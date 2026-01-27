@@ -2,6 +2,12 @@ import { Request, Response } from 'express';
 import { prisma } from '../lib/prisma';
 import { uploadToCloudinary, deleteFromCloudinary, extractPublicId, validateImage } from '../utils/cloudinary';
 
+// Helper to safely extract string from query/params (can be string | string[])
+const asString = (value: string | string[] | undefined): string | undefined => {
+  if (Array.isArray(value)) return value[0];
+  return value;
+};
+
 // Extend Express Request type to include user property from auth middleware
 declare global {
   namespace Express {
@@ -421,7 +427,7 @@ export const getItems = async (req: Request, res: Response) => {
 export const getItemById = async (req: Request, res: Response) => {
   try {
     // Step 1: Extract ID from URL parameter
-    const { id } = req.params;
+    const id = asString(req.params.id);
 
     // Step 2: Validate ID is not empty
     if (!id || id.trim() === '') {
@@ -541,7 +547,7 @@ export const getItemById = async (req: Request, res: Response) => {
 export const updateItem = async (req: Request, res: Response) => {
   try {
     // Step 1: Extract ID from URL params
-    const { id } = req.params;
+    const id = asString(req.params.id);
     
     // Step 2: Extract fields from request body (all optional)
     const { title, description, location, currentLocation, status } = req.body;
@@ -701,7 +707,7 @@ export const updateItem = async (req: Request, res: Response) => {
 export const deleteItem = async (req: Request, res: Response) => {
   try {
     // Step 1: Extract item ID from URL params
-    const { id } = req.params;
+    const id = asString(req.params.id);
 
     // Step 2: Validate that ID exists and is not empty
     // Why validate? Prevent unnecessary database queries

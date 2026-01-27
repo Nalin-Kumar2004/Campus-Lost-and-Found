@@ -42,6 +42,7 @@
     "@types/express-rate-limit": "^5.1.3",
     "@types/jsonwebtoken": "*",
     "@types/node": "*",
+    "@types/nodemailer": "^7.0.9",
     "tsx": "*",
     "typescript": "*"
   }
