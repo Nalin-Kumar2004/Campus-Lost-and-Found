@@ -35,7 +35,6 @@ import authService from '../services/auth.service';
 import { Mail, Lock, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { ButtonSpinner } from '../components/Spinner';
 import type { LocationState, ApiError } from '../types';
-import { getErrorMessage } from '../types';
 
 /**
  * VALIDATION SCHEMA

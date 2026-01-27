@@ -34,7 +34,6 @@ import { useAuthStore } from '../store/authStore';
 import authService from '../services/auth.service';
 import { useToast } from '../contexts/ToastContext';
 import type { ApiError } from '../types';
-import { getErrorMessage } from '../types';
 import { 
   User, 
   Mail, 
