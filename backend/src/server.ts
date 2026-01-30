@@ -71,9 +71,10 @@ const generalLimiter = rateLimit({
 });
 
 // Stricter limit for auth endpoints (prevent brute force)
+// Increased for testing phase
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // Only 10 login attempts per 15 min
+  max: 100, // 100 attempts per 15 min (can lower after testing)
   message: { error: 'Too many login attempts, please try again later.' },
   standardHeaders: true,
   legacyHeaders: false,
