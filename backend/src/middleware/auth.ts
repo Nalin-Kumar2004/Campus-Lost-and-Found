@@ -30,6 +30,10 @@ export interface AuthenticatedRequest extends Request {
 export const authenticate: RequestHandler = (req, res, next) => {
   const reqA = req as AuthenticatedRequest;
   
+  // Debug: Log what cookies we receive
+  console.log('🍪 Cookies received:', JSON.stringify((req as any).cookies, null, 2));
+  console.log('🍪 Raw cookie header:', req.headers.cookie);
+  
   // Read token from httpOnly cookie (set during login/register)
   const token = (req as any).cookies?.token;
 
