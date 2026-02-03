@@ -113,7 +113,7 @@ export const createItem = async (req: Request, res: Response) => {
     // Step 6: Validate category (must match enum in schema)
     const validCategories = [
       'ELECTRONICS', 'CLOTHING', 'ACCESSORIES', 'BOOKS', 
-      'ID_CARDS', 'KEYS', 'BAGS', 'SPORTS', 'OTHER'
+      'ID_CARDS', 'KEYS', 'BAGS', 'SPORTS', 'WALLET', 'OTHER'
     ];
     if (!validCategories.includes(category)) {
       return res.status(400).json({ 
@@ -277,7 +277,7 @@ export const getItems = async (req: Request, res: Response) => {
     // Step 4: Validate category if provided
     const validCategories = [
       'ELECTRONICS', 'CLOTHING', 'ACCESSORIES', 'BOOKS', 
-      'ID_CARDS', 'KEYS', 'BAGS', 'SPORTS', 'OTHER'
+      'ID_CARDS', 'KEYS', 'BAGS', 'SPORTS', 'WALLET', 'OTHER'
     ];
     if (category && !validCategories.includes(category as string)) {
       return res.status(400).json({ 
