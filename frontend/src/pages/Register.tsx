@@ -230,7 +230,7 @@ export default function Register() {
       <div className="w-full max-w-md relative z-10">
         {/* HEADER */}
         <div className="text-center mt-6 mb-4 fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">
+          <h1 className="text-4xl md:text-5xl font-bold mb-2 font-brand">
             <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
               Create Account
             </span>

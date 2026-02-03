@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Left - Branding */}
           <div className="text-center md:text-left">
-            <p className="text-sm font-medium text-gray-900">Campus Lost & Found</p>
+            <p className="text-sm font-semibold text-gray-900 font-brand">Campus Lost & Found</p>
             <p className="text-xs text-gray-500 mt-1">
               © {new Date().getFullYear()} All rights reserved.
             </p>

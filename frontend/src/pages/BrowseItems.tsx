@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Search, MapPin, Calendar, X, Tag, ChevronDown, Package, SlidersHorizontal, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { Search, MapPin, Calendar, X, Tag, ChevronDown, Package, SlidersHorizontal, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import itemsService from '../services/items.service';
 import type { Item, ItemFilters } from '../services/items.service';
 import { useDebounce } from '../hooks/useDebounce';
@@ -135,7 +135,7 @@ export default function BrowseItems() {
       <section className="pt-24 pb-4 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-2">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-2 font-brand">
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
                 Browse Items
               </span>
@@ -389,7 +389,6 @@ export default function BrowseItems() {
                 to="/post-item"
                 className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm rounded-lg transition-colors"
               >
-                <Sparkles className="w-4 h-4" />
                 Report an Item
               </Link>
             )}

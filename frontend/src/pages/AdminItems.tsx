@@ -98,7 +98,7 @@ export default function AdminItems() {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2 font-brand">
               Item Moderation
             </h1>
             <p className="text-gray-600">

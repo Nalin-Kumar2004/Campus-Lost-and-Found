@@ -197,7 +197,7 @@ export default function Claims() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Claims Management</h1>
+              <h1 className="text-3xl font-bold text-gray-900 font-brand">Claims Management</h1>
               <p className="mt-1 text-gray-600">Review and manage claims on your found items</p>
             </div>
             <button

@@ -74,7 +74,7 @@ export default function Navbar() {
             to={item.to}
             onClick={() => setMobileOpen(false)}
             className={({ isActive }) =>
-              `relative px-3.5 py-2 rounded-lg text-[13px] font-medium transition-all duration-500 ease-out inline-flex items-center gap-1.5 transform border ${isActive
+              `relative px-3.5 py-2 rounded-lg text-[13px] font-medium font-ui transition-all duration-500 ease-out inline-flex items-center gap-1.5 transform border ${isActive
                 ? isAdmin
                   ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/30 scale-105 border-transparent'
                   : 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-500/30 scale-105 border-transparent'
@@ -117,10 +117,10 @@ export default function Navbar() {
             <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
               <LogoIcon />
             </div>
-            <span className="text-[15px] font-semibold text-gray-900 hidden sm:inline tracking-tight">
+            <span className="text-[15px] font-semibold text-gray-900 hidden sm:inline tracking-tight font-brand">
               Campus Lost & Found
             </span>
-            <span className="text-[15px] font-semibold text-gray-900 sm:hidden tracking-tight">
+            <span className="text-[15px] font-semibold text-gray-900 sm:hidden tracking-tight font-brand">
               CLF
             </span>
           </button>

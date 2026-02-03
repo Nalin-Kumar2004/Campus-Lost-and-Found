@@ -128,7 +128,7 @@ export default function AdminDashboard() {
     <div className="container mx-auto px-4 py-8">
       {/* HEADER */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2 font-brand">
           Admin Dashboard
         </h1>
         <p className="text-gray-600">
@@ -146,7 +146,7 @@ export default function AdminDashboard() {
           >
             <div className="flex items-center justify-between mb-4">
               <span className="text-3xl">{card.icon}</span>
-              <div className={`${card.color} text-white px-3 py-1 rounded-full text-sm font-semibold`}>
+              <div className={`${card.color} text-white px-3 py-1 rounded-full text-sm font-semibold font-stats`}>
                 {card.value}
               </div>
             </div>

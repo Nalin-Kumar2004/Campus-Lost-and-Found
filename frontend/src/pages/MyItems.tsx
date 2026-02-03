@@ -151,7 +151,7 @@ export default function MyItems() {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 font-brand">
                 My Items
               </h1>
               <p className="text-gray-600">
@@ -175,7 +175,7 @@ export default function MyItems() {
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-transparent to-purple-500/0 group-hover:from-indigo-500/5 group-hover:to-purple-500/5 transition-all duration-400"></div>
               <div className="flex items-start justify-evenly gap-2 w-full relative z-10">
                 <div className="flex flex-col">
-                  <div className="text-3xl font-semibold text-gray-900 mb-1 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300">{stats.total}</div>
+                  <div className="text-3xl font-semibold text-gray-900 mb-1 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300 font-stats">{stats.total}</div>
                   <div className="text-xs font-medium text-gray-600">Total</div>
                 </div>
                 <div className="w-11 h-11 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_8px_24px_rgba(99,102,241,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">
@@ -189,7 +189,7 @@ export default function MyItems() {
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 via-transparent to-red-500/0 group-hover:from-pink-500/5 group-hover:to-red-500/5 transition-all duration-400"></div>
               <div className="flex items-start justify-evenly gap-2 w-full relative z-10">
                 <div className="flex flex-col">
-                  <div className="text-3xl font-semibold text-gray-900 mb-1 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300">{stats.missing}</div>
+                  <div className="text-3xl font-semibold text-gray-900 mb-1 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300 font-stats">{stats.missing}</div>
                   <div className="text-xs font-medium text-gray-600">Still Missing</div>
                 </div>
                 <div className="w-11 h-11 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_8px_24px_rgba(236,72,153,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">
@@ -203,7 +203,7 @@ export default function MyItems() {
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/0 via-transparent to-emerald-500/0 group-hover:from-green-500/5 group-hover:to-emerald-500/5 transition-all duration-400"></div>
               <div className="flex items-start justify-evenly gap-2 w-full relative z-10">
                 <div className="flex flex-col">
-                  <div className="text-3xl font-semibold text-gray-900 mb-1 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300">{stats.unclaimed}</div>
+                  <div className="text-3xl font-semibold text-gray-900 mb-1 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300 font-stats">{stats.unclaimed}</div>
                   <div className="text-xs font-medium text-gray-600">Not Claimed</div>
                 </div>
                 <div className="w-11 h-11 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_8px_24px_rgba(34,197,94,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">
@@ -217,7 +217,7 @@ export default function MyItems() {
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-transparent to-blue-500/0 group-hover:from-cyan-500/5 group-hover:to-blue-500/5 transition-all duration-400"></div>
               <div className="flex items-start justify-evenly gap-2 w-full relative z-10">
                 <div className="flex flex-col">
-                  <div className="text-3xl font-semibold text-gray-900 mb-1 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300">{stats.completed}</div>
+                  <div className="text-3xl font-semibold text-gray-900 mb-1 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300 font-stats">{stats.completed}</div>
                   <div className="text-xs font-medium text-gray-600">Completed</div>
                 </div>
                 <div className="w-11 h-11 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_8px_24px_rgba(6,182,212,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">

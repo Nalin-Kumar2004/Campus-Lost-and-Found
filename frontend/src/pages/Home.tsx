@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, TrendingUp, Clock, MapPin, Tag, Calendar, ArrowRight, Search as SearchIcon, ChevronDown } from 'lucide-react';
+import { TrendingUp, Clock, MapPin, Tag, Calendar, ArrowRight, Search as SearchIcon, ChevronDown } from 'lucide-react';
 import { useItems } from '../hooks/useQueries';
 import { PageSpinner } from '../components/Spinner';
 
@@ -87,12 +87,22 @@ export default function Home() {
               </h1>
             </div>
 
-            {/* Description in glass card */}
+            {/* Description - Premium Card with Micro-interactions */}
             <div className="text-center mb-12 fade-in animation-delay-200 animate-float-delayed">
-              <div className="inline-block px-8 py-5 rounded-[2rem] bg-white/80 backdrop-blur-md border border-white shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(99,102,241,0.12)] hover:scale-[1.02] transition-all duration-500 max-w-3xl">
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-medium">
-                  A modern platform to help our campus community recover lost belongings and return found items quickly and securely.
-                </p>
+              <div className="relative inline-block max-w-3xl">
+                {/* Gradient background glow on hover */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 rounded-[1.75rem] opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-700"></div>
+                
+                {/* Card content */}
+                <div className="relative group px-10 py-7 rounded-[1.75rem] bg-white border border-gray-200/80 shadow-[0_2px_16px_rgba(0,0,0,0.04)] hover:border-indigo-300/60 hover:shadow-[0_8px_32px_rgba(99,102,241,0.15)] hover:-translate-y-0.5 transition-all duration-500 ease-out">
+                  {/* Subtle inner highlight */}
+                  <div className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-b from-white to-transparent opacity-60"></div>
+                  
+                  {/* Text content */}
+                  <p className="relative text-lg md:text-xl text-gray-600 leading-[1.7] font-medium tracking-tight">
+                    A modern platform to help our campus community recover lost belongings and return found items <span className="text-indigo-600 font-semibold">quickly and securely</span>.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -106,8 +116,7 @@ export default function Home() {
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"></div>
                 
-                <Sparkles className="w-5 h-5 relative group-hover/btn:rotate-12 transition-transform duration-300" />
-                <span className="relative">Report an Item</span>
+                <span className="relative font-ui font-medium">Report an Item</span>
                 <ArrowRight className="w-5 h-5 relative group-hover/btn:translate-x-1 transition-transform duration-300" />
               </Link>
 
@@ -117,7 +126,7 @@ export default function Home() {
                 className="group/btn relative inline-flex items-center gap-3 px-8 py-4 bg-white/80 backdrop-blur-md text-gray-700 font-bold text-lg rounded-2xl border-2 border-gray-200 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:bg-white hover:border-indigo-300 hover:shadow-[0_8px_40px_rgba(99,102,241,0.2)] hover:-translate-y-1 hover:scale-105 active:scale-100 transition-all duration-300"
               >
                 <SearchIcon className="w-5 h-5 relative group-hover/btn:scale-110 group-hover/btn:text-indigo-600 transition-all duration-300" />
-                <span className="relative group-hover/btn:bg-gradient-to-r group-hover/btn:from-indigo-600 group-hover/btn:to-purple-600 group-hover/btn:bg-clip-text group-hover/btn:text-transparent transition-all duration-300">Browse All Items</span>
+                <span className="relative font-ui font-medium group-hover/btn:bg-gradient-to-r group-hover/btn:from-indigo-600 group-hover/btn:to-purple-600 group-hover/btn:bg-clip-text group-hover/btn:text-transparent transition-all duration-300">Browse All Items</span>
               </Link>
             </div>
           </div>
@@ -156,7 +165,7 @@ export default function Home() {
       <section id="latest-items-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 scroll-mt-20">
         <div className="flex items-center justify-between mb-10">
           <div>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight">Latest Items</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight font-brand">Latest Items</h2>
             <p className="text-lg text-gray-600 font-medium">Recently reported lost and found items</p>
           </div>
           <Link
@@ -298,7 +307,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 via-transparent to-red-500/0 group-hover:from-pink-500/5 group-hover:to-red-500/5 transition-all duration-400"></div>
               <div className="flex items-start justify-evenly gap-3 w-full relative z-10">
                 <div className="flex flex-col">
-                  <div className="text-5xl font-semibold text-gray-900 mb-1.5 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300">{stats.lostCount}</div>
+                  <div className="text-5xl font-semibold text-gray-900 mb-1.5 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300 font-stats">{stats.lostCount}</div>
                   <div className="text-[13px] font-medium text-gray-600">Lost Items</div>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_8px_24px_rgba(236,72,153,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">
@@ -312,11 +321,11 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/0 via-transparent to-emerald-500/0 group-hover:from-green-500/5 group-hover:to-emerald-500/5 transition-all duration-400"></div>
               <div className="flex items-start justify-evenly gap-3 w-full relative z-10">
                 <div className="flex flex-col">
-                  <div className="text-5xl font-semibold text-gray-900 mb-1.5 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300">{stats.foundCount}</div>
+                  <div className="text-5xl font-semibold text-gray-900 mb-1.5 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300 font-stats">{stats.foundCount}</div>
                   <div className="text-[13px] font-medium text-gray-600">Found Items</div>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_8px_24px_rgba(34,197,94,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">
-                  <Sparkles className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
+                  <Tag className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
                 </div>
               </div>
             </div>
@@ -326,7 +335,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-transparent to-purple-500/0 group-hover:from-indigo-500/5 group-hover:to-purple-500/5 transition-all duration-400"></div>
               <div className="flex items-start justify-evenly gap-3 w-full relative z-10">
                 <div className="flex flex-col">
-                  <div className="text-5xl font-semibold text-gray-900 mb-1.5 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300">{stats.unclaimedCount}</div>
+                  <div className="text-5xl font-semibold text-gray-900 mb-1.5 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300 font-stats">{stats.unclaimedCount}</div>
                   <div className="text-[13px] font-medium text-gray-600">Unclaimed</div>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_8px_24px_rgba(99,102,241,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">
@@ -340,7 +349,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-transparent to-blue-500/0 group-hover:from-cyan-500/5 group-hover:to-blue-500/5 transition-all duration-400"></div>
               <div className="flex items-start justify-evenly gap-3 w-full relative z-10">
                 <div className="flex flex-col">
-                  <div className="text-5xl font-semibold text-gray-900 mb-1.5 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300">{stats.todayCount}</div>
+                  <div className="text-5xl font-semibold text-gray-900 mb-1.5 leading-none tracking-tight group-hover:scale-105 transition-transform duration-300 font-stats">{stats.todayCount}</div>
                   <div className="text-[13px] font-medium text-gray-600">Posted Today</div>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_8px_24px_rgba(6,182,212,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">
@@ -381,7 +390,7 @@ export default function Home() {
             <span>How It Works</span>
             <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform duration-300" />
           </button>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 tracking-tight font-brand">
             Three Simple Steps to <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Success</span>
           </h2>
         </div>
@@ -442,7 +451,7 @@ export default function Home() {
                 
                 {/* Icon in glass container */}
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 mb-5 shadow-sm group-hover:scale-110 group-hover:border-indigo-200 transition-all duration-300">
-                  <Sparkles className="w-7 h-7 text-indigo-600 group-hover:scale-110 transition-transform duration-300" strokeWidth={2} />
+                  <SearchIcon className="w-7 h-7 text-indigo-600 group-hover:scale-110 transition-transform duration-300" strokeWidth={2} />
                 </div>
                 
                 {/* Content */}
@@ -455,7 +464,7 @@ export default function Home() {
                 
                 {/* Feature tag */}
                 <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+                  <SearchIcon className="w-3.5 h-3.5 text-indigo-600" />
                   <span className="text-xs font-semibold text-indigo-700">Smart Alerts</span>
                 </div>
               </div>
@@ -505,7 +514,6 @@ export default function Home() {
               {/* Shimmer effect */}
               <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
               
-              <Sparkles className="w-5 h-5 relative group-hover/btn:rotate-12 transition-transform duration-300" />
               <span className="relative">Get Started Now</span>
               <ArrowRight className="w-5 h-5 relative group-hover/btn:translate-x-1 transition-transform duration-300" strokeWidth={2.5} />
             </Link>

@@ -343,7 +343,7 @@ export default function ItemDetails() {
             </div>
 
             {/* TITLE */}
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight font-brand">
               {item.title}
             </h1>
 
