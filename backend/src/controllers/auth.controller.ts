@@ -115,7 +115,8 @@ export const register = async (req: Request, res: Response) => {
       httpOnly: true,  // Cannot be accessed by JavaScript (XSS protection)
       secure: cookieSecure, // HTTPS only in production
       sameSite: cookieSameSite, // CSRF protection (use 'none' for cross-site in prod)
-      maxAge: 15 * 60 * 1000 // 15 minutes
+      maxAge: 15 * 60 * 1000, // 15 minutes
+      path: '/' // Ensure cookie is sent with all requests
     });
 
     // Refresh token: long-lived (7 days)
@@ -123,7 +124,8 @@ export const register = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: cookieSecure,
       sameSite: cookieSameSite,
-      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      path: '/' // Ensure cookie is sent with all requests
     });
 
     // Step 11: Fire-and-forget verification email
@@ -223,7 +225,8 @@ export const login = async (req: Request, res: Response) => {
       httpOnly: true,  // Cannot be accessed by JavaScript (XSS protection)
       secure: cookieSecure, // HTTPS only in production
       sameSite: cookieSameSite, // CSRF protection (use 'none' for cross-site in prod)
-      maxAge: 15 * 60 * 1000 // 15 minutes
+      maxAge: 15 * 60 * 1000, // 15 minutes
+      path: '/' // Ensure cookie is sent with all requests
     });
 
     // Refresh token: long-lived (7 days)
@@ -231,7 +234,8 @@ export const login = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: cookieSecure,
       sameSite: cookieSameSite,
-      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      path: '/' // Ensure cookie is sent with all requests
     });
 
     // Step 9: Return user only (token is in httpOnly cookie)

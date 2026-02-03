@@ -176,7 +176,8 @@ router.post('/refresh', async (req: Request, res: Response) => {
       httpOnly: true,
       secure: cookieSecure,
       sameSite: cookieSameSite,
-      maxAge: 15 * 60 * 1000 // 15 minutes
+      maxAge: 15 * 60 * 1000, // 15 minutes
+      path: '/' // Ensure cookie is sent with all requests
     });
 
     // Set new refresh token cookie
@@ -184,7 +185,8 @@ router.post('/refresh', async (req: Request, res: Response) => {
       httpOnly: true,
       secure: cookieSecure,
       sameSite: cookieSameSite,
-      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      path: '/' // Ensure cookie is sent with all requests
     });
 
     return res.json({ 
