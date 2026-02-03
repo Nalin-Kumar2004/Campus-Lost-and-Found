@@ -143,11 +143,15 @@ export default function Login() {
       const error = err as ApiError;
       console.error('Login error:', error);
       
-      // Set user-friendly error message
-      if (error.response?.status === 401) {
+      // Handle timeout errors (Render cold start)
+      if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+        setApiError('Server is waking up... Please wait a moment and try again.');
+      } else if (error.response?.status === 401) {
         setApiError('Invalid email or password');
       } else if (error.response?.status === 403) {
         setApiError('Account is locked. Please contact support.');
+      } else if (!error.response) {
+        setApiError('Network error: Server is offline or unreachable. Please try again.');
       } else {
         setApiError(error.response?.data?.error || 'Login failed. Please try again.');
       }

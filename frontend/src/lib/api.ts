@@ -68,10 +68,14 @@ const processQueue = (error: Error | null) => {
 
 /**
  * CREATE AXIOS INSTANCE
+ * 
+ * Note: Timeout set to 180s (3 minutes) to handle Render free-tier cold starts.
+ * Cold starts can take 60-120 seconds when the server is sleeping.
+ * This is a temporary measure for development - consider upgrading to paid tier in production.
  */
 const api: AxiosInstance = axios.create({
   baseURL: BASE_URL,
-  timeout: 10000,
+  timeout: 180000, // 180 seconds (3 minutes) for generous cold start tolerance
   headers: {
     'Content-Type': 'application/json',
   },

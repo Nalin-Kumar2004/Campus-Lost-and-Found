@@ -211,10 +211,16 @@ export default function Register() {
       const error = err as ApiError;
       console.error('Registration error:', error);
       
-      if (error.response?.status === 409) {
+      // Handle timeout errors (Render cold start)
+      if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+        setApiError('Server is waking up... Please wait a moment and try again. Your account may have been created.');
+        toast.warning('Server was sleeping. Please try logging in - your account may already exist!');
+      } else if (error.response?.status === 409) {
         setApiError('An account with this email already exists');
       } else if (error.response?.status === 400) {
         setApiError(error.response?.data?.message || 'Invalid registration data');
+      } else if (!error.response) {
+        setApiError('Network error: Server is offline or unreachable. Please try again.');
       } else {
         setApiError(error.response?.data?.error || 'Registration failed. Please try again.');
       }
