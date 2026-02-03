@@ -12,6 +12,10 @@ import {
 } from '../utils/email';
 import crypto from 'crypto';
 
+const isProduction = process.env.NODE_ENV === 'production';
+const cookieSameSite = (isProduction ? 'none' : 'lax') as 'lax' | 'none' | 'strict';
+const cookieSecure = isProduction || process.env.COOKIE_SECURE === 'true';
+
 
 /**
  * Register a new user
@@ -109,16 +113,16 @@ export const register = async (req: Request, res: Response) => {
     // Access token: short-lived (15 min)
     res.cookie('token', token, {
       httpOnly: true,  // Cannot be accessed by JavaScript (XSS protection)
-      secure: process.env.NODE_ENV === 'production' || process.env.COOKIE_SECURE === 'true', // HTTPS only in production
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax', // CSRF protection
+      secure: cookieSecure, // HTTPS only in production
+      sameSite: cookieSameSite, // CSRF protection (use 'none' for cross-site in prod)
       maxAge: 15 * 60 * 1000 // 15 minutes
     });
 
     // Refresh token: long-lived (7 days)
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production' || process.env.COOKIE_SECURE === 'true',
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+      secure: cookieSecure,
+      sameSite: cookieSameSite,
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
@@ -217,16 +221,16 @@ export const login = async (req: Request, res: Response) => {
     // Access token: short-lived (15 min)
     res.cookie('token', token, {
       httpOnly: true,  // Cannot be accessed by JavaScript (XSS protection)
-      secure: process.env.NODE_ENV === 'production' || process.env.COOKIE_SECURE === 'true', // HTTPS only in production
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax', // CSRF protection
+      secure: cookieSecure, // HTTPS only in production
+      sameSite: cookieSameSite, // CSRF protection (use 'none' for cross-site in prod)
       maxAge: 15 * 60 * 1000 // 15 minutes
     });
 
     // Refresh token: long-lived (7 days)
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production' || process.env.COOKIE_SECURE === 'true',
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+      secure: cookieSecure,
+      sameSite: cookieSameSite,
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 

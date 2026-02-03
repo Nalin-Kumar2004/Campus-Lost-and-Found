@@ -20,6 +20,10 @@ import {
 
 const router = Router();
 
+const isProduction = process.env.NODE_ENV === 'production';
+const cookieSameSite = (isProduction ? 'none' : 'lax') as 'lax' | 'none' | 'strict';
+const cookieSecure = isProduction || process.env.COOKIE_SECURE === 'true';
+
 /**
  * POST /api/auth/register
  * Register a new user
@@ -64,16 +68,16 @@ router.post('/logout', (req: Request, res: Response) => {
   // Clear access token cookie
   res.clearCookie('token', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    secure: cookieSecure,
+    sameSite: cookieSameSite,
     path: '/'
   });
 
   // Clear refresh token cookie
   res.clearCookie('refreshToken', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    secure: cookieSecure,
+    sameSite: cookieSameSite,
     path: '/'
   });
 
@@ -170,16 +174,16 @@ router.post('/refresh', async (req: Request, res: Response) => {
     // Set new access token cookie
     res.cookie('token', newAccessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: cookieSecure,
+      sameSite: cookieSameSite,
       maxAge: 15 * 60 * 1000 // 15 minutes
     });
 
     // Set new refresh token cookie
     res.cookie('refreshToken', newRefreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: cookieSecure,
+      sameSite: cookieSameSite,
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
