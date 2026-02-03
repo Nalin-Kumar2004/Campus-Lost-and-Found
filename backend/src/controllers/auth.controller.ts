@@ -110,12 +110,12 @@ export const register = async (req: Request, res: Response) => {
     });
 
     // Step 10: Set httpOnly cookies (secure token storage)
-    // Access token: short-lived (15 min)
+    // Access token: 24 hours (industry standard for web apps)
     res.cookie('token', token, {
       httpOnly: true,  // Cannot be accessed by JavaScript (XSS protection)
       secure: cookieSecure, // HTTPS only in production
       sameSite: cookieSameSite, // CSRF protection (use 'none' for cross-site in prod)
-      maxAge: 15 * 60 * 1000, // 15 minutes
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
       path: '/' // Ensure cookie is sent with all requests
     });
 
@@ -222,12 +222,12 @@ export const login = async (req: Request, res: Response) => {
     });
 
     // Step 8: Set httpOnly cookies (secure token storage)
-    // Access token: short-lived (15 min)
+    // Access token: 24 hours (industry standard for web apps)
     res.cookie('token', token, {
       httpOnly: true,  // Cannot be accessed by JavaScript (XSS protection)
       secure: cookieSecure, // HTTPS only in production
       sameSite: cookieSameSite, // CSRF protection (use 'none' for cross-site in prod)
-      maxAge: 15 * 60 * 1000, // 15 minutes
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
       path: '/' // Ensure cookie is sent with all requests
     });
 

@@ -162,8 +162,17 @@ api.interceptors.response.use(
      * 4. Not the refresh endpoint itself (prevent infinite loop!)
      */
     const isTokenExpired = status === 401 && errorCode === 'TOKEN_EXPIRED';
+    const isNoToken = status === 401 && errorCode === 'NO_TOKEN';
     const isRefreshEndpoint = originalRequest?.url?.includes('/auth/refresh');
     const hasNotRetried = !originalRequest?._retry;
+
+    // If NO_TOKEN, the cookie is missing - redirect to login immediately
+    if (isNoToken) {
+      console.error('No token cookie found. Session invalid. Redirecting to login...');
+      localStorage.removeItem('auth-storage');
+      window.location.href = '/login';
+      return Promise.reject(error);
+    }
 
     if (isTokenExpired && hasNotRetried && !isRefreshEndpoint) {
       // Mark this request as retried to prevent infinite loops
@@ -211,9 +220,11 @@ api.interceptors.response.use(
 
     switch (status) {
       case 401:
-        // Token revoked or invalid (not just expired) - must login
-        if (errorCode === 'TOKEN_REVOKED' || errorCode === 'INVALID_TOKEN') {
+        // Token revoked, invalid, or missing - must login
+        if (errorCode === 'TOKEN_REVOKED' || errorCode === 'INVALID_TOKEN' || errorCode === 'NO_TOKEN') {
           console.error('Authentication invalid. Redirecting to login...');
+          // Clear Zustand auth state
+          localStorage.removeItem('auth-storage');
           window.location.href = '/login';
         }
         break;

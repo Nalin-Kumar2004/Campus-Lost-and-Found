@@ -10,9 +10,11 @@ import crypto from 'crypto';
 // For microservices, consider RS256 (asymmetric) for public key verification
 const JWT_ALGORITHM: Algorithm = 'HS256';
 
-// Token expiration times (short access token + longer refresh token)
-const ACCESS_TOKEN_EXPIRY = '15m';  // Short-lived for security
-const REFRESH_TOKEN_EXPIRY = '7d';  // Longer-lived, stored securely
+// Token expiration times
+// Note: For a campus app with form-filling, 24 hours is more practical
+// High-security apps (banking) use 15m, but this causes UX issues for our use case
+const ACCESS_TOKEN_EXPIRY = '24h';  // 24 hours - industry standard for web apps
+const REFRESH_TOKEN_EXPIRY = '7d';  // 7 days - for "remember me" functionality
 
 interface TokenPayload {
   userId: string;

@@ -176,7 +176,7 @@ router.post('/refresh', async (req: Request, res: Response) => {
       httpOnly: true,
       secure: cookieSecure,
       sameSite: cookieSameSite,
-      maxAge: 15 * 60 * 1000, // 15 minutes
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
       path: '/' // Ensure cookie is sent with all requests
     });
 
