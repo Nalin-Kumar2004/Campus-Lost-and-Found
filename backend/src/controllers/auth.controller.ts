@@ -127,11 +127,13 @@ export const register = async (req: Request, res: Response) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       path: '/' // Ensure cookie is sent with all requests
     });
-
-    // Step 11: Fire-and-forget verification email
+// Step 11: Fire-and-forget verification email
+   
+    
     try {
       const verifyUrl = buildVerificationLink(verificationToken);
-      await sendEmail({
+      await
+     sendEmail({
         to: newUser.email,
         subject: 'Verify your email - Campus Lost & Found',
         html: verificationEmailTemplate({
@@ -146,7 +148,7 @@ export const register = async (req: Request, res: Response) => {
     } catch (e) {
       console.error('Failed to send verification email after register:', e);
     }
-
+    
     // Step 12: Return user only (token is in cookie)
     return res.status(201).json({
       user: newUser,

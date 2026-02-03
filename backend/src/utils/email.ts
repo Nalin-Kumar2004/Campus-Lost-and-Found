@@ -26,6 +26,9 @@ function getTransporter() {
     port: smtpPort,
     secure: smtpPort === 465, // true for 465, false for other ports
     auth: { user: smtpUser, pass: smtpPass },
+    connectionTimeout: 60000, // 60 seconds for slow connections
+    greetingTimeout: 30000, // 30 seconds
+    socketTimeout: 60000, // 60 seconds
   });
   return transporter;
 }
