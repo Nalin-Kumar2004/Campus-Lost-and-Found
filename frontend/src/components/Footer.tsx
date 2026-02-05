@@ -15,13 +15,14 @@ export default function Footer() {
           </div>
 
           {/* Center - Links */}
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <Link to="/privacy" className="text-sm text-gray-600 hover:text-indigo-600 transition-colors">
               Privacy Policy
             </Link>
             <a href="mailto:support@campuslostandfound.com" className="text-sm text-gray-600 hover:text-indigo-600 transition-colors flex items-center gap-1">
               <Mail className="w-3.5 h-3.5" />
-              Contact
+              <span className="hidden xs:inline">Contact</span>
+              <span className="xs:hidden">Email</span>
             </a>
           </div>
 

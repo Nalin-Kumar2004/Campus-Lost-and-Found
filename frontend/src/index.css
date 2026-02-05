@@ -86,6 +86,21 @@
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "rlig" 1, "calt" 1;
     line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+    height: auto;
   }
 
   /* Typography hierarchy */

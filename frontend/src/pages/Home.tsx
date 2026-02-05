@@ -94,7 +94,7 @@ export default function Home() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 rounded-[1.75rem] opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-700"></div>
                 
                 {/* Card content */}
-                <div className="relative group px-10 py-7 rounded-[1.75rem] bg-white border border-gray-200/80 shadow-[0_2px_16px_rgba(0,0,0,0.04)] hover:border-indigo-300/60 hover:shadow-[0_8px_32px_rgba(99,102,241,0.15)] hover:-translate-y-0.5 transition-all duration-500 ease-out">
+                <div className="relative group px-6 sm:px-10 py-6 sm:py-7 rounded-[1.75rem] bg-white border border-gray-200/80 shadow-[0_2px_16px_rgba(0,0,0,0.04)] hover:border-indigo-300/60 hover:shadow-[0_8px_32px_rgba(99,102,241,0.15)] hover:-translate-y-0.5 transition-all duration-500 ease-out">
                   {/* Subtle inner highlight */}
                   <div className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-b from-white to-transparent opacity-60"></div>
                   
@@ -111,7 +111,7 @@ export default function Home() {
               {/* Primary CTA */}
               <Link
                 to="/post-item"
-                className="group/btn relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white font-bold text-lg rounded-2xl shadow-[0_8px_32px_rgba(99,102,241,0.35)] hover:shadow-[0_16px_48px_rgba(99,102,241,0.5)] hover:-translate-y-1 hover:scale-105 active:scale-100 transition-all duration-300 overflow-hidden whitespace-nowrap"
+                className="group/btn relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white font-bold text-lg rounded-2xl shadow-[0_8px_32px_rgba(99,102,241,0.35)] hover:shadow-[0_16px_48px_rgba(99,102,241,0.5)] hover:-translate-y-1 hover:scale-105 active:scale-100 transition-all duration-300 overflow-hidden whitespace-nowrap"
               >
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"></div>
@@ -123,7 +123,7 @@ export default function Home() {
               {/* Secondary CTA */}
               <Link
                 to="/browse"
-                className="group/btn relative inline-flex items-center gap-3 px-8 py-4 bg-white/80 backdrop-blur-md text-gray-700 font-bold text-lg rounded-2xl border-2 border-gray-200 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:bg-white hover:border-indigo-300 hover:shadow-[0_8px_40px_rgba(99,102,241,0.2)] hover:-translate-y-1 hover:scale-105 active:scale-100 transition-all duration-300"
+                className="group/btn relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-white/80 backdrop-blur-md text-gray-700 font-bold text-lg rounded-2xl border-2 border-gray-200 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:bg-white hover:border-indigo-300 hover:shadow-[0_8px_40px_rgba(99,102,241,0.2)] hover:-translate-y-1 hover:scale-105 active:scale-100 transition-all duration-300"
               >
                 <SearchIcon className="w-5 h-5 relative group-hover/btn:scale-110 group-hover/btn:text-indigo-600 transition-all duration-300" />
                 <span className="relative font-ui font-medium group-hover/btn:bg-gradient-to-r group-hover/btn:from-indigo-600 group-hover/btn:to-purple-600 group-hover/btn:bg-clip-text group-hover/btn:text-transparent transition-all duration-300">Browse All Items</span>
@@ -208,7 +208,7 @@ export default function Home() {
               >
                 {/* Duplicate items for infinite scroll effect */}
                 {[...latestItems, ...latestItems].map((item, index) => (
-                  <div key={`${item.id}-${index}`} className="w-[40vw] max-w-[500px] min-w-[350px] flex-shrink-0">
+                  <div key={`${item.id}-${index}`} className="w-[85vw] sm:w-[70vw] md:w-[55vw] lg:w-[40vw] max-w-[520px] min-w-[260px] sm:min-w-[320px] flex-shrink-0">
                     <Link to={`/items/${item.id}`} className="group block">
                       <article className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 h-full">
                         {/* Image */}

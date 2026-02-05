@@ -285,16 +285,16 @@ export default function PostItem() {
               return (
                 <div key={step.number} className="flex items-center flex-1">
                   <div className="flex flex-col items-center flex-1">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-300 ${
+                    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold transition-all duration-300 ${
                       isCompleted 
                         ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg' 
                         : isCurrent 
-                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-110' 
+                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg sm:scale-110' 
                         : 'bg-gray-200 text-gray-400'
                     }`}>
-                      {isCompleted ? <CheckCircle2 className="w-5 h-5" /> : <Icon className="w-5 h-5" />}
+                      {isCompleted ? <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" /> : <Icon className="w-4 h-4 sm:w-5 sm:h-5" />}
                     </div>
-                    <span className={`mt-2 text-xs sm:text-sm font-medium transition-colors ${
+                    <span className={`hidden xs:block mt-2 text-xs sm:text-sm font-medium transition-colors ${
                       isCurrent ? 'text-indigo-600' : isCompleted ? 'text-green-600' : 'text-gray-400'
                     }`}>
                       {step.title}
@@ -393,7 +393,7 @@ export default function PostItem() {
                       <label className="block text-sm font-bold text-gray-700 mb-2">
                         Category *
                       </label>
-                      <div className="grid grid-cols-3 gap-2">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {/* Wallet */}
                         <label className="relative cursor-pointer group">
                           <input
@@ -789,7 +789,7 @@ export default function PostItem() {
                     </div>
 
                     {/* Compact Summary Grid */}
-                    <div className="grid grid-cols-2 gap-3 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-gray-50 rounded-xl border border-gray-200">
                       <div>
                         <span className="text-xs text-gray-500 uppercase tracking-wide">Type</span>
                         <p className={`text-sm font-semibold ${watchedFields.type === 'LOST' ? 'text-red-600' : 'text-green-600'}`}>

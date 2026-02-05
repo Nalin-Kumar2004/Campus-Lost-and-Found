@@ -151,9 +151,9 @@ export default function BrowseItems() {
       <section className="relative z-10 pb-4">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Floating Search Bar */}
-          <div className="flex flex-wrap items-center gap-3 p-3 bg-white/70 backdrop-blur-xl rounded-2xl border border-white/80 shadow-lg">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/70 backdrop-blur-xl rounded-2xl border border-white/80 shadow-lg">
             {/* Search Input */}
-            <div className="relative flex-1 min-w-[300px]">
+            <div className="relative flex-1 w-full sm:w-auto sm:min-w-[240px] lg:min-w-[300px]">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
@@ -176,12 +176,12 @@ export default function BrowseItems() {
             <div className="hidden lg:block w-px h-8 bg-gray-200"></div>
 
             {/* Type Toggle */}
-            <div className="flex bg-gray-100/80 rounded-xl p-1 shrink-0">
+            <div className="flex bg-gray-100/80 rounded-xl p-1 shrink-0 w-full sm:w-auto">
                 {(['ALL', 'LOST', 'FOUND'] as const).map((t) => (
                   <button
                     key={t}
                     onClick={() => setType(t)}
-                    className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                    className={`flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
                       type === t
                         ? t === 'LOST' 
                           ? 'bg-red-500 text-white shadow-sm'
@@ -200,11 +200,11 @@ export default function BrowseItems() {
               <div className="hidden lg:block w-px h-8 bg-gray-200"></div>
 
               {/* Category Dropdown */}
-              <div className="relative shrink-0">
+              <div className="relative shrink-0 w-full sm:w-auto">
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="appearance-none pl-3 pr-8 py-2 bg-transparent border-0 text-sm font-semibold text-gray-700 focus:outline-none focus:ring-0 cursor-pointer"
+                  className="appearance-none w-full sm:w-auto pl-3 pr-8 py-2 bg-transparent border-0 text-sm font-semibold text-gray-700 focus:outline-none focus:ring-0 cursor-pointer">
                 >
                   {CATEGORIES.map((cat) => (
                     <option key={cat.value} value={cat.value}>
@@ -221,7 +221,7 @@ export default function BrowseItems() {
               {/* Advanced Filters Toggle */}
               <button
                 onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 shrink-0 ${
+                className={`flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 shrink-0 w-full sm:w-auto ${
                   showAdvancedFilters || location || dateFrom || dateTo
                     ? 'bg-indigo-600 text-white'
                     : 'text-gray-600 hover:text-indigo-600 hover:bg-indigo-50'
@@ -247,11 +247,11 @@ export default function BrowseItems() {
                 <div className="w-full h-px bg-gray-200/60"></div>
 
                 {/* Location Filter */}
-                <div className="relative">
+                <div className="relative w-full sm:w-auto">
                     <select
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
-                      className="appearance-none pl-9 pr-9 py-2 bg-gray-50/80 border border-gray-200/60 rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:border-indigo-400 cursor-pointer"
+                      className="appearance-none w-full sm:w-auto pl-9 pr-9 py-2 bg-gray-50/80 border border-gray-200/60 rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:border-indigo-400 cursor-pointer">
                     >
                       <option value="">All Locations</option>
                       {LOCATIONS.map((loc) => (
@@ -263,24 +263,24 @@ export default function BrowseItems() {
                   </div>
 
                   {/* Date From */}
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-500 font-medium">From</span>
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <span className="text-xs text-gray-500 font-medium shrink-0">From</span>
                     <input
                       type="date"
                       value={dateFrom}
                       onChange={(e) => setDateFrom(e.target.value)}
-                      className="px-3 py-2 bg-gray-50/80 border border-gray-200/60 rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:border-indigo-400"
+                      className="flex-1 sm:flex-none px-2 sm:px-3 py-2 bg-gray-50/80 border border-gray-200/60 rounded-lg text-xs sm:text-sm font-medium text-gray-700 focus:outline-none focus:border-indigo-400"
                     />
                   </div>
 
                   {/* Date To */}
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-500 font-medium">To</span>
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <span className="text-xs text-gray-500 font-medium shrink-0">To</span>
                     <input
                       type="date"
                       value={dateTo}
                       onChange={(e) => setDateTo(e.target.value)}
-                      className="px-3 py-2 bg-gray-50/80 border border-gray-200/60 rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:border-indigo-400"
+                      className="flex-1 sm:flex-none px-2 sm:px-3 py-2 bg-gray-50/80 border border-gray-200/60 rounded-lg text-xs sm:text-sm font-medium text-gray-700 focus:outline-none focus:border-indigo-400"
                     />
                   </div>
 
@@ -483,21 +483,21 @@ export default function BrowseItems() {
         {!loading && filteredItems.length > 0 && totalPages > 1 && (
           <div className="mt-12 flex items-center justify-between">
             {/* Results info */}
-            <p className="text-sm text-gray-600">
+            <p className="hidden sm:block text-sm text-gray-600">
               Showing <span className="font-semibold text-gray-900">{((currentPage - 1) * itemsPerPage) + 1}</span> to{' '}
               <span className="font-semibold text-gray-900">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of{' '}
               <span className="font-semibold text-gray-900">{totalItems}</span> results
             </p>
 
             {/* Pagination controls */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2 mx-auto sm:mx-0">
               {/* Previous button */}
               <button
                 onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                 disabled={currentPage === 1}
-                className="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
+                className="p-1.5 sm:p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
               {/* Page numbers */}
@@ -518,7 +518,7 @@ export default function BrowseItems() {
                     <button
                       key={pageNum}
                       onClick={() => setCurrentPage(pageNum)}
-                      className={`min-w-[40px] h-10 px-3 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                      className={`min-w-[32px] sm:min-w-[40px] h-8 sm:h-10 px-2 sm:px-3 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-300 ${
                         currentPage === pageNum
                           ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
                           : 'text-gray-600 hover:bg-gray-100'
@@ -534,9 +534,9 @@ export default function BrowseItems() {
               <button
                 onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                 disabled={currentPage === totalPages}
-                className="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
+                className="p-1.5 sm:p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>

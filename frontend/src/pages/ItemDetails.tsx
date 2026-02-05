@@ -253,7 +253,7 @@ export default function ItemDetails() {
 
             {/* THUMBNAIL GALLERY */}
             {item.images && item.images.length > 1 && (
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3">
                 {item.images.map((image, index) => (
                   <button
                     key={index}
@@ -324,9 +324,9 @@ export default function ItemDetails() {
           {/* RIGHT COLUMN - Item Information */}
           <div>
             {/* TYPE & STATUS BADGES */}
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex flex-wrap items-center gap-2 mb-6">
               <span
-                className={`px-4 py-2 text-xs font-bold rounded-full uppercase tracking-wide ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-bold rounded-full uppercase tracking-wide ${
                   item.type === 'LOST'
                     ? 'bg-gradient-to-r from-red-500 to-pink-600 text-white shadow-lg shadow-red-500/30'
                     : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/30'
