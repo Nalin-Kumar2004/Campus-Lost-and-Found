@@ -125,10 +125,11 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-50 pt-20 sm:pt-24">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
       {/* HEADER */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2 font-brand">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 font-brand">
           Admin Dashboard
         </h1>
         <p className="text-gray-600">
@@ -137,33 +138,33 @@ export default function AdminDashboard() {
       </div>
 
       {/* STATS GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
         {statCards.map((card) => (
           <Link
             key={card.title}
             to={card.link}
-            className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+            className="bg-white rounded-lg shadow-md p-4 sm:p-6 hover:shadow-lg transition-shadow"
           >
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-3xl">{card.icon}</span>
-              <div className={`${card.color} text-white px-3 py-1 rounded-full text-sm font-semibold font-stats`}>
+            <div className="flex items-center justify-between mb-2 sm:mb-4">
+              <span className="text-2xl sm:text-3xl">{card.icon}</span>
+              <div className={`${card.color} text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-semibold font-stats`}>
                 {card.value}
               </div>
             </div>
-            <h3 className="text-gray-600 text-sm font-medium">{card.title}</h3>
+            <h3 className="text-gray-600 text-xs sm:text-sm font-medium">{card.title}</h3>
           </Link>
         ))}
       </div>
 
       {/* QUICK ACTIONS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         {/* USER MANAGEMENT */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <div className="flex items-center mb-4">
-            <span className="text-2xl mr-3">👥</span>
-            <h2 className="text-xl font-bold text-gray-900">User Management</h2>
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+          <div className="flex items-center mb-3 sm:mb-4">
+            <span className="text-xl sm:text-2xl mr-2 sm:mr-3">👥</span>
+            <h2 className="text-lg sm:text-xl font-bold text-gray-900">User Management</h2>
           </div>
-          <p className="text-gray-600 mb-4">
+          <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
             View all users, manage roles, and moderate accounts
           </p>
           <Link
@@ -175,12 +176,12 @@ export default function AdminDashboard() {
         </div>
 
         {/* ITEM MODERATION */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <div className="flex items-center mb-4">
-            <span className="text-2xl mr-3">📦</span>
-            <h2 className="text-xl font-bold text-gray-900">Item Moderation</h2>
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+          <div className="flex items-center mb-3 sm:mb-4">
+            <span className="text-xl sm:text-2xl mr-2 sm:mr-3">📦</span>
+            <h2 className="text-lg sm:text-xl font-bold text-gray-900">Item Moderation</h2>
           </div>
-          <p className="text-gray-600 mb-4">
+          <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
             Review all lost & found items, manage statuses, and moderate content
           </p>
           <Link
@@ -193,11 +194,12 @@ export default function AdminDashboard() {
       </div>
 
       {/* RECENT ACTIVITY (Placeholder) */}
-      <div className="mt-8 bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Recent Activity</h2>
-        <p className="text-gray-500 text-center py-8">
+      <div className="mt-6 sm:mt-8 bg-white rounded-lg shadow-md p-4 sm:p-6">
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Recent Activity</h2>
+        <p className="text-gray-500 text-center py-6 sm:py-8 text-sm sm:text-base">
           Activity feed coming soon...
         </p>
+      </div>
       </div>
     </div>
   );

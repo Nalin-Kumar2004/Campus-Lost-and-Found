@@ -80,21 +80,22 @@ export default function AdminUsers() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-50 pt-20 sm:pt-24">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
       {/* HEADER */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2 font-brand">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 font-brand">
               User Management
             </h1>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               View and manage all registered users
             </p>
           </div>
           <Link
             to="/admin"
-            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-center w-full sm:w-auto text-sm sm:text-base"
           >
             ← Back to Dashboard
           </Link>
@@ -273,11 +274,12 @@ export default function AdminUsers() {
 
       {/* EMPTY STATE */}
       {!loading && users.length === 0 && (
-        <div className="bg-white rounded-lg shadow-md p-12 text-center">
-          <p className="text-gray-500 text-lg">No users found</p>
-          <p className="text-gray-400 text-sm mt-2">Try adjusting your filters</p>
+        <div className="bg-white rounded-lg shadow-md p-8 sm:p-12 text-center">
+          <p className="text-gray-500 text-base sm:text-lg">No users found</p>
+          <p className="text-gray-400 text-xs sm:text-sm mt-2">Try adjusting your filters</p>
         </div>
       )}
+      </div>
     </div>
   );
 }

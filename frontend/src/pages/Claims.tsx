@@ -195,14 +195,14 @@ export default function Claims() {
       {/* HEADER */}
       <div className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 font-brand">Claims Management</h1>
-              <p className="mt-1 text-gray-600">Review and manage claims on your found items</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 font-brand">Claims Management</h1>
+              <p className="mt-1 text-sm sm:text-base text-gray-600">Review and manage claims on your found items</p>
             </div>
             <button
               onClick={() => navigate('/my-items')}
-              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm sm:text-base w-full sm:w-auto text-center"
             >
               Back to My Items
             </button>
@@ -213,9 +213,9 @@ export default function Claims() {
       {/* FILTERS & SEARCH */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="bg-white rounded-lg shadow p-4 mb-6">
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col gap-4">
             {/* Search */}
-            <div className="flex-1 relative">
+            <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
                 type="text"
@@ -227,18 +227,18 @@ export default function Claims() {
             </div>
 
             {/* Status Filter Tabs */}
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {(['all', 'PENDING', 'APPROVED', 'REJECTED'] as const).map((status) => (
                 <button
                   key={status}
                   onClick={() => setFilter(status)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${filter === status
+                  className={`px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${filter === status
                     ? 'bg-primary text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                 >
                   {status === 'all' ? 'All' : status.charAt(0) + status.slice(1).toLowerCase()}
-                  <span className="ml-2 text-sm">
+                  <span className="ml-1 sm:ml-2 text-xs sm:text-sm">
                     ({status === 'all' ? claims.length : claims.filter(c => c.status === status).length})
                   </span>
                 </button>
@@ -265,13 +265,13 @@ export default function Claims() {
           <div className="space-y-4">
             {filteredClaims.map((claim) => (
               <div key={claim.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                <div className="p-6">
-                  <div className="flex gap-6">
+                <div className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                     {/* Item Image */}
                     <img
                       src={claim.item.imageUrl}
                       alt={claim.item.title}
-                      className="w-32 h-32 object-cover rounded-lg shrink-0"
+                      className="w-full sm:w-32 h-40 sm:h-32 object-cover rounded-lg shrink-0"
                     />
 
                     {/* Claim Details */}
