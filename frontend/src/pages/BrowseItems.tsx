@@ -204,7 +204,7 @@ export default function BrowseItems() {
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="appearance-none w-full sm:w-auto pl-3 pr-8 py-2 bg-transparent border-0 text-sm font-semibold text-gray-700 focus:outline-none focus:ring-0 cursor-pointer">
+                  className="appearance-none w-full sm:w-auto pl-3 pr-8 py-2 bg-transparent border-0 text-sm font-semibold text-gray-700 focus:outline-none focus:ring-0 cursor-pointer"
                 >
                   {CATEGORIES.map((cat) => (
                     <option key={cat.value} value={cat.value}>
@@ -251,7 +251,7 @@ export default function BrowseItems() {
                     <select
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
-                      className="appearance-none w-full sm:w-auto pl-9 pr-9 py-2 bg-gray-50/80 border border-gray-200/60 rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:border-indigo-400 cursor-pointer">
+                      className="appearance-none w-full sm:w-auto pl-9 pr-9 py-2 bg-gray-50/80 border border-gray-200/60 rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:border-indigo-400 cursor-pointer"
                     >
                       <option value="">All Locations</option>
                       {LOCATIONS.map((loc) => (
